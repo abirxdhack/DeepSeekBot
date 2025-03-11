@@ -1,0 +1,3 @@
+asyncio
+httpx
+pyrogram
