@@ -5,10 +5,19 @@ import requests
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from pyrogram.enums import ParseMode
-from config import GROQ_API_KEY, GROQ_API_URL, TEXT_MODEL
+from config import GROQ_API_KEY, GROQ_API_URL, TEXT_MODEL, API_ID, API_HASH, BOT_TOKEN
 
 # Initialize logging
 logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
+
+# Initialize the bot client
+app = Client(
+    "my_bot",
+    api_id=API_ID,
+    api_hash=API_HASH,
+    bot_token=BOT_TOKEN
+)
 
 def setup_groq_handler(app: Client):
     @app.on_message(filters.command(["dep"], prefixes=["/", "."]) & (filters.private | filters.group))
@@ -33,7 +42,7 @@ def setup_groq_handler(app: Client):
                 json={
                     "model": TEXT_MODEL,
                     "messages": [
-                        {"role": "system", "content": "Reply in the same language as the user's message."},
+                        {"role": "system", "content": "Reply in the same language as the user's message But Shortly"},
                         {"role": "user", "content": user_text},
                     ],
                 },
@@ -51,6 +60,20 @@ def setup_groq_handler(app: Client):
         except Exception as e:
             logger.error(f"Error generating response: {e}")
             temp_message.edit_text("**⚠️ Sorry, I encountered an error processing your request.**", parse_mode=ParseMode.MARKDOWN)
+
+def start_message(client: Client, message: Message):
+    start_text = (
+        "**👋 Hello! Welcome to the Dep Bot!**\n\n"
+        "Use the `/dep` command followed by your text to generate a Dep response.\n"
+        "Example: `/dep How do I set up a new project?`\n\n"
+        "⚡️ Let's get started!"
+    )
+    message.reply_text(start_text, parse_mode=ParseMode.MARKDOWN)
+
+# Register start command handler
+@app.on_message(filters.command(["start"], prefixes=["/", "."]) & filters.private)
+def start(client: Client, message: Message):
+    start_message(client, message)
 
 # Run bot
 if __name__ == "__main__":
