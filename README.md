@@ -122,3 +122,4 @@ This project is open-source and available under the MIT License.
 ## 👤 Credits  
 Developed by [@abirxdhack](https://github.com/abirxdhack).  
 
+Developed by [@nkka404](https://t.me/nkka404).  
