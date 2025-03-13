@@ -1,12 +1,12 @@
 
 # 🤖 DeepSeek: R1- AI Chatbot for Telegram  
 
-DeepSeek: R1 is a kinda slow and inefficient AI-powered chatbot for Telegram, built using Pyrogram and OpenRouter AI API. This bot can handle multiple user queries simultaneously with high responsiveness.  
+DeepSeek: R1 is a fast and inefficient AI-powered chatbot for Telegram, built using Pyrogram and OpenRouter AI API. This bot can handle multiple user queries simultaneously with high responsiveness.  
 
 ## ✨ Features  
 - 🚀 AI-powered responses via OpenRouter API  
 - ⚡ Handles multiple users efficiently with 1000 workers  
-- 🔥 Fast API requests using `httpx`  But Kinda Slow
+- 🔥 Fast API requests using `httpx` 
 - 🛠️ Error handling for timeouts and failed API responses  
 
 ## 📂 Project Structure  
